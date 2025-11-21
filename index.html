@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maria Rosa e Cirino - Em memória</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background: #fdfbf7;
+            color: #3d3d3d;
+            line-height: 1.8;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 80px 20px 60px;
+            background: white;
+            border-bottom: 1px solid #e8e4dc;
+        }
+
+        .header h1 {
+            font-family: 'Crimson Text', serif;
+            font-size: 3.5em;
+            font-weight: 400;
+            color: #2d2d2d;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .dates {
+            font-size: 1.2em;
+            color: #8b8175;
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        .divider {
+            width: 60px;
+            height: 1px;
+            background: #d4c5b0;
+            margin: 30px auto;
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        .container-wide {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        /* Seções lado a lado */
+        .biographies-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .biography-card {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+        }
+
+        .biography-card .person-name {
+            font-family: 'Crimson Text', serif;
+            font-size: 2.2em;
+            font-weight: 400;
+            color: #2d2d2d;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .biography-card .person-dates {
+            font-size: 1.1em;
+            color: #8b8175;
+            font-style: italic;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* Biografia */
+        .biography {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .main-photo {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 50px;
+            display: block;
+        }
+
+        .main-photo img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .bio-text {
+            font-size: 1.15em;
+            line-height: 2;
+            color: #4a4a4a;
+            text-align: justify;
+        }
+
+        .bio-text p {
+            margin-bottom: 30px;
+        }
+
+        .bio-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Galeria */
+        .gallery {
+            padding: 80px 0 100px;
+            background: #fdfbf7;
+        }
+
+        .gallery-title {
+            font-family: 'Crimson Text', serif;
+            font-size: 2.5em;
+            font-weight: 400;
+            text-align: center;
+            color: #2d2d2d;
+            margin-bottom: 60px;
+            letter-spacing: 0.5px;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .photo-item {
+            background: white;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .photo-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .photo-caption {
+            padding: 20px;
+            font-size: 0.95em;
+            color: #6b6b6b;
+            text-align: center;
+            font-style: italic;
+        }
+
+        /* Footer */
+        .footer {
+            background: white;
+            border-top: 1px solid #e8e4dc;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .footer-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.3em;
+            color: #5d5d5d;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .footer-signature {
+            font-size: 1em;
+            color: #8b8175;
+            margin-top: 20px;
+        }
+
+        /* Responsivo */
+        @media (max-width: 1024px) {
+            .biographies-wrapper {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5em;
+            }
+
+            .dates {
+                font-size: 1em;
+            }
+
+            .container, .container-wide {
+                padding: 0 20px;
+            }
+
+            .biography {
+                padding: 50px 0;
+            }
+
+            .biography-card {
+                padding: 30px 20px;
+            }
+
+            .biography-card .person-name {
+                font-size: 1.8em;
+            }
+
+            .gallery {
+                padding: 50px 0 60px;
+            }
+
+            .gallery-title {
+                font-size: 2em;
+                margin-bottom: 40px;
+            }
+
+            .photo-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .bio-text {
+                font-size: 1.05em;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>Maria Rosa e Cirino</h1>
+        <div class="divider"></div>
+        <p class="dates">Em memória</p>
+    </header>
+
+    <!-- Biografias -->
+    <section class="biography">
+        <div class="container-wide">
+            <div class="biographies-wrapper">
+                <!-- Maria Rosa -->
+                <div class="biography-card">
+                    <h2 class="person-name">Maria Rosa de Lara</h2>
+                    <p class="person-dates">1929 — 2025</p>
+
+                    <div class="main-photo">
+                        <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=800&q=80" alt="Maria Rosa de Lara">
+                    </div>
+
+                    <div class="bio-text">
+                        <p>
+                            Maria Rosa de Lara nasceu em um tempo onde os valores de família e dedicação
+                            eram os pilares da vida. Desde jovem, carregou consigo uma bondade natural e
+                            um sorriso que iluminava qualquer ambiente. Sua presença trazia paz e aconchego
+                            a todos que tinham o privilégio de estar ao seu lado.
+                        </p>
+
+                        <p>
+                            Foi uma mãe dedicada, uma avó carinhosa e uma bisavó orgulhosa. Sua casa era
+                            sempre cheia de amor, risadas e o aroma inconfundível de suas receitas especiais.
+                            Cada refeição preparada por suas mãos era feita com carinho, cada abraço dado
+                            com sinceridade, cada palavra dita com sabedoria.
+                        </p>
+
+                        <p>
+                            Maria Rosa tinha o dom de transformar momentos simples em memórias eternas.
+                            Suas histórias, seus conselhos e seu amor incondicional moldaram gerações.
+                            Ensinou-nos sobre paciência, gratidão e a importância de estar presente na
+                            vida daqueles que amamos.
+                        </p>
+
+                        <p>
+                            Hoje, sua luz continua brilhando através de cada um de nós. Suas lições
+                            permanecem vivas em nossos corações e suas memórias nos acompanharão para
+                            sempre. Maria Rosa não se foi — ela vive em cada sorriso, em cada abraço,
+                            em cada "eu te amo" que compartilhamos em família.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Cirino -->
+                <div class="biography-card">
+                    <h2 class="person-name">Cirino</h2>
+                    <p class="person-dates">19XX — 20XX</p>
+
+                    <div class="main-photo">
+                        <img src="https://images.unsplash.com/photo-1566616213894-2d4e1baee5d8?w=800&q=80" alt="Cirino">
+                    </div>
+
+                    <div class="bio-text">
+                        <p>
+                            Cirino foi um homem de princípios sólidos, cuja dedicação à família era
+                            inabalável. Com mãos trabalhadoras e coração generoso, construiu um legado
+                            de amor e respeito que perdura através das gerações.
+                        </p>
+
+                        <p>
+                            Foi um pai exemplar, um avô dedicado e um bisavô amoroso. Sua sabedoria
+                            era compartilhada com paciência, seus conselhos eram dados com carinho,
+                            e sua presença transmitia segurança a todos ao seu redor.
+                        </p>
+
+                        <p>
+                            Cirino ensinou pelo exemplo. Mostrou que a verdadeira riqueza está nas
+                            pessoas que amamos, nos momentos que compartilhamos e nas memórias que
+                            construímos juntos. Sua integridade e bondade tocaram todos que tiveram
+                            a honra de conhecê-lo.
+                        </p>
+
+                        <p>
+                            Seu legado vive em cada um de nós — nas histórias que contamos, nos
+                            valores que carregamos e no amor que passamos adiante. Cirino permanece
+                            eternamente em nossos corações, guiando-nos com sua luz e sabedoria.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeria -->
+    <section class="gallery">
+        <div class="container">
+            <h2 class="gallery-title">Memórias</h2>
+            
+            <div class="photo-grid">
+                <div class="photo-item">
+                    <img src="https://images.unsplash.com/photo-1609220136736-443140cffec6?w=600&q=80" alt="Foto 1">
+                    <div class="photo-caption">Juventude</div>
+                </div>
+
+                <div class="photo-item">
+                    <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=600&q=80" alt="Foto 2">
+                    <div class="photo-caption">Dia especial</div>
+                </div>
+
+                <div class="photo-item">
+                    <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80" alt="Foto 3">
+                    <div class="photo-caption">Em família</div>
+                </div>
+
+                <div class="photo-item">
+                    <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=600&q=80" alt="Foto 4">
+                    <div class="photo-caption">Reunião familiar</div>
+                </div>
+
+                <div class="photo-item">
+                    <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?w=600&q=80" alt="Foto 5">
+                    <div class="photo-caption">Momentos felizes</div>
+                </div>
+
+                <div class="photo-item">
+                    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&q=80" alt="Foto 6">
+                    <div class="photo-caption">Celebração</div>
+                </div>
+
+                <div class="photo-item">
+                    <img src="https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=600&q=80" alt="Foto 7">
+                    <div class="photo-caption">Sorriso eterno</div>
+                </div>
+
+                <div class="photo-item">
+                    <img src="https://images.unsplash.com/photo-1581579186913-45ac3e6efe93?w=600&q=80" alt="Foto 8">
+                    <div class="photo-caption">Amor de avó</div>
+                </div>
+
+                <div class="photo-item">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&q=80" alt="Foto 9">
+                    <div class="photo-caption">Beleza atemporal</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer-text">Para sempre em nossos corações</p>
+        <div class="divider"></div>
+        <p class="footer-signature">Com amor eterno, sua família</p>
+    </footer>
+</body>
+</html>
