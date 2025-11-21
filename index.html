@@ -94,6 +94,33 @@
             margin-bottom: 30px;
         }
 
+        /* Seção do casal */
+        .couple-section {
+            padding: 60px 0;
+            background: #fdfbf7;
+            text-align: center;
+        }
+
+        .couple-photo {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .couple-photo img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .couple-caption {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.3em;
+            color: #5d5d5d;
+            font-style: italic;
+            margin-top: 25px;
+        }
+
         /* Biografia */
         .biography {
             padding: 80px 0;
@@ -253,6 +280,84 @@
                 text-align: left;
             }
         }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .lightbox-close:hover {
+            opacity: 0.7;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 50px;
+            color: white;
+            cursor: pointer;
+            padding: 20px;
+            user-select: none;
+            transition: opacity 0.3s;
+        }
+
+        .lightbox-nav:hover {
+            opacity: 0.7;
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        /* Cursor pointer nas imagens */
+        .couple-photo img,
+        .main-photo img,
+        .photo-item img {
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .couple-photo img:hover,
+        .main-photo img:hover,
+        .photo-item img:hover {
+            opacity: 0.9;
+        }
     </style>
 </head>
 <body>
@@ -262,6 +367,16 @@
         <div class="divider"></div>
         <p class="dates">Em memória</p>
     </header>
+
+    <!-- Seção do Casal -->
+    <section class="couple-section">
+        <div class="container">
+            <div class="couple-photo">
+                <img src="https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=800&q=80" alt="Maria Rosa e Cirino juntos">
+            </div>
+            <p class="couple-caption">Juntos para sempre</p>
+        </div>
+    </section>
 
     <!-- Biografias -->
     <section class="biography">
@@ -407,5 +522,67 @@
         <div class="divider"></div>
         <p class="footer-signature">Com amor eterno, sua família</p>
     </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <span class="lightbox-nav lightbox-prev">&#10094;</span>
+        <img src="" alt="Imagem em tela cheia" id="lightbox-img">
+        <span class="lightbox-nav lightbox-next">&#10095;</span>
+    </div>
+
+    <script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const images = Array.from(document.querySelectorAll('.couple-photo img, .main-photo img, .photo-item img'));
+        const prevBtn = document.querySelector('.lightbox-prev');
+        const nextBtn = document.querySelector('.lightbox-next');
+        let currentIndex = 0;
+
+        function showImage(index) {
+            if (index < 0) index = images.length - 1;
+            if (index >= images.length) index = 0;
+            currentIndex = index;
+            lightboxImg.src = images[index].src.replace('w=600', 'w=1200').replace('w=800', 'w=1200');
+        }
+
+        images.forEach((img, index) => {
+            img.addEventListener('click', () => {
+                currentIndex = index;
+                showImage(currentIndex);
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        prevBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            showImage(currentIndex - 1);
+        });
+
+        nextBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            showImage(currentIndex + 1);
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox || e.target === document.querySelector('.lightbox-close')) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            } else if (e.key === 'ArrowLeft') {
+                showImage(currentIndex - 1);
+            } else if (e.key === 'ArrowRight') {
+                showImage(currentIndex + 1);
+            }
+        });
+    </script>
 </body>
 </html>
