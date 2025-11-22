@@ -65,9 +65,14 @@
 
         /* Seções lado a lado */
         .biographies-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex;
+            justify-content: center;
             gap: 60px;
+        }
+
+        .biographies-wrapper .biography-card {
+            flex: 0 1 600px;
+            max-width: 600px;
         }
 
         .biography-card {
@@ -128,14 +133,16 @@
         }
 
         .main-photo {
-            width: 100%;
-            max-width: 500px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: flex-start;
             margin: 0 auto 50px;
-            display: block;
         }
 
         .main-photo img {
-            width: 100%;
+            max-height: 450px;
+            width: auto;
             height: auto;
             border-radius: 4px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
@@ -173,9 +180,8 @@
         }
 
         .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
+            columns: 3;
+            column-gap: 20px;
         }
 
         .photo-item {
@@ -184,6 +190,8 @@
             overflow: hidden;
             box-shadow: 0 2px 15px rgba(0,0,0,0.06);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            break-inside: avoid;
+            margin-bottom: 20px;
         }
 
         .photo-item:hover {
@@ -193,8 +201,7 @@
 
         .photo-item img {
             width: 100%;
-            height: 320px;
-            object-fit: cover;
+            height: auto;
             display: block;
         }
 
@@ -231,8 +238,17 @@
         /* Responsivo */
         @media (max-width: 1024px) {
             .biographies-wrapper {
-                grid-template-columns: 1fr;
+                flex-direction: column;
+                align-items: center;
                 gap: 40px;
+            }
+
+            .biographies-wrapper .biography-card {
+                max-width: 100%;
+            }
+
+            .photo-grid {
+                columns: 2;
             }
         }
 
@@ -261,6 +277,15 @@
                 font-size: 1.8em;
             }
 
+            .main-photo {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .main-photo img {
+                max-width: 100%;
+            }
+
             .gallery {
                 padding: 50px 0 60px;
             }
@@ -271,8 +296,7 @@
             }
 
             .photo-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
+                columns: 1;
             }
 
             .bio-text {
@@ -363,13 +387,19 @@
 <body>
     <!-- Header -->
     <header class="header">
-        <h1>Maria Rosa e Cirino</h1>
-        <div class="divider"></div>
         <p class="dates">Em memória</p>
+        <div class="divider"></div>
+        <h2>Maria Rosa De Faria Lara</h2>
+        <p class="person-dates">02/07/1929 - 16/11/2025</p>
+        <h2>&</h2>
+        <h2>Cirino De Faria Lara</h2>
+        <p class="person-dates">16/03/1999</p>
+        
+        
     </header>
 
     <!-- Seção do Casal -->
-    <section class="couple-section">
+    <section class="couple-section" style="display: none;">
         <div class="container">
             <div class="couple-photo">
                 <img src="https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=800&q=80" alt="Maria Rosa e Cirino juntos">
@@ -384,48 +414,50 @@
             <div class="biographies-wrapper">
                 <!-- Maria Rosa -->
                 <div class="biography-card">
-                    <h2 class="person-name">Maria Rosa de Lara</h2>
-                    <p class="person-dates">1929 — 2025</p>
+                    
 
                     <div class="main-photo">
-                        <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=800&q=80" alt="Maria Rosa de Lara">
+                        <img src="imgs/foto-44.jpg" alt="Maria Rosa De Faria Lara">
+                        <img src="imgs/foto-45.jpeg" alt="Cirino">
                     </div>
 
                     <div class="bio-text">
                         <p>
-                            Maria Rosa de Lara nasceu em um tempo onde os valores de família e dedicação
-                            eram os pilares da vida. Desde jovem, carregou consigo uma bondade natural e
-                            um sorriso que iluminava qualquer ambiente. Sua presença trazia paz e aconchego
-                            a todos que tinham o privilégio de estar ao seu lado.
+                            A história de Dona Maria Rosa Faria de Lara em Ariquemes, Rondônia, começa como
+                            a de muitos desbravadores do estado: saindo do interior do Paraná em busca de
+                            uma vida melhor. Junto com seu esposo, Cirino, que trabalhava como carpinteiro,
+                            ela enfrentou uma viagem de oito dias de estrada com toda a família, até escolher
+                            Ariquemes como lar. Foi aqui que eles plantaram, colheram e criaram seus filhos,
+                            netos, bisnetos e até tataranetos.
                         </p>
 
                         <p>
-                            Foi uma mãe dedicada, uma avó carinhosa e uma bisavó orgulhosa. Sua casa era
-                            sempre cheia de amor, risadas e o aroma inconfundível de suas receitas especiais.
-                            Cada refeição preparada por suas mãos era feita com carinho, cada abraço dado
-                            com sinceridade, cada palavra dita com sabedoria.
+                            Nas décadas de 70 e 80, quando a saúde pública, a energia e toda a estrutura da
+                            região ainda eram muito precárias, Dona Maria enfrentou a vida com força e coragem.
+                            Lavava roupas para ajudar no sustento da casa e fazia de tudo para apoiar o marido
+                            e cuidar da família. Na área rural, encarou doenças difíceis, como a malária,
+                            sempre com firmeza e perseverança.
                         </p>
 
                         <p>
-                            Maria Rosa tinha o dom de transformar momentos simples em memórias eternas.
-                            Suas histórias, seus conselhos e seu amor incondicional moldaram gerações.
-                            Ensinou-nos sobre paciência, gratidão e a importância de estar presente na
-                            vida daqueles que amamos.
+                            A fé em Deus sempre foi parte essencial de sua caminhada. Membro da Igreja
+                            Assembleia de Deus por mais de 50 anos, Dona Maria deixou como legado o amor,
+                            a paciência e o respeito ao próximo — mesmo quando havia diferenças ou
+                            discordâncias. Ela sempre acreditou que a família precisava permanecer unida.
                         </p>
 
                         <p>
-                            Hoje, sua luz continua brilhando através de cada um de nós. Suas lições
-                            permanecem vivas em nossos corações e suas memórias nos acompanharão para
-                            sempre. Maria Rosa não se foi — ela vive em cada sorriso, em cada abraço,
-                            em cada "eu te amo" que compartilhamos em família.
+                            Dona Maria teve a graça de ver sua família crescer e chegou a conhecer seus
+                            tataranetos. Hoje, deixa esta terra, mas nos deixa também um orgulho imenso
+                            e um legado que carregaremos para sempre.
                         </p>
                     </div>
                 </div>
 
                 <!-- Cirino -->
-                <div class="biography-card">
+                <div class="biography-card" style="display: none;">
                     <h2 class="person-name">Cirino</h2>
-                    <p class="person-dates">19XX — 20XX</p>
+                    <p class="person-dates">16/03/1999</p>
 
                     <div class="main-photo">
                         <img src="https://images.unsplash.com/photo-1566616213894-2d4e1baee5d8?w=800&q=80" alt="Cirino">
@@ -469,49 +501,141 @@
             
             <div class="photo-grid">
                 <div class="photo-item">
-                    <img src="https://images.unsplash.com/photo-1609220136736-443140cffec6?w=600&q=80" alt="Foto 1">
-                    <div class="photo-caption">Juventude</div>
+                    <img src="imgs/foto-1.jpeg" alt="Foto 1">
                 </div>
-
                 <div class="photo-item">
-                    <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=600&q=80" alt="Foto 2">
-                    <div class="photo-caption">Dia especial</div>
+                    <img src="imgs/foto-2.jpeg" alt="Foto 2">
                 </div>
-
                 <div class="photo-item">
-                    <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80" alt="Foto 3">
-                    <div class="photo-caption">Em família</div>
+                    <img src="imgs/foto-3.jpeg" alt="Foto 3">
                 </div>
-
                 <div class="photo-item">
-                    <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=600&q=80" alt="Foto 4">
-                    <div class="photo-caption">Reunião familiar</div>
+                    <img src="imgs/foto-4.jpeg" alt="Foto 4">
                 </div>
-
                 <div class="photo-item">
-                    <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?w=600&q=80" alt="Foto 5">
-                    <div class="photo-caption">Momentos felizes</div>
+                    <img src="imgs/foto-5.jpeg" alt="Foto 5">
                 </div>
-
                 <div class="photo-item">
-                    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&q=80" alt="Foto 6">
-                    <div class="photo-caption">Celebração</div>
+                    <img src="imgs/foto-6.jpeg" alt="Foto 6">
                 </div>
-
                 <div class="photo-item">
-                    <img src="https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=600&q=80" alt="Foto 7">
-                    <div class="photo-caption">Sorriso eterno</div>
+                    <img src="imgs/foto-7.jpeg" alt="Foto 7">
                 </div>
-
                 <div class="photo-item">
-                    <img src="https://images.unsplash.com/photo-1581579186913-45ac3e6efe93?w=600&q=80" alt="Foto 8">
-                    <div class="photo-caption">Amor de avó</div>
+                    <img src="imgs/foto-8.jpeg" alt="Foto 8">
                 </div>
-
                 <div class="photo-item">
-                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&q=80" alt="Foto 9">
-                    <div class="photo-caption">Beleza atemporal</div>
+                    <img src="imgs/foto-9.jpg" alt="Foto 9">
                 </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-10.jpeg" alt="Foto 10">
+                </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-11.jpeg" alt="Foto 11">
+                </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-12.jpeg" alt="Foto 12">
+                </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-13.jpeg" alt="Foto 13">
+                </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-14.jpeg" alt="Foto 14">
+                </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-15.jpeg" alt="Foto 15">
+                </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-16.jpeg" alt="Foto 16">
+                </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-17.jpeg" alt="Foto 17">
+                </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-18.jpeg" alt="Foto 18">
+                </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-19.jpeg" alt="Foto 19">
+                </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-20.jpeg" alt="Foto 20">
+                </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-21.jpeg" alt="Foto 21">
+                </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-22.jpeg" alt="Foto 22">
+                </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-23.jpeg" alt="Foto 23">
+                </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-24.jpeg" alt="Foto 24">
+                </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-25.jpeg" alt="Foto 25">
+                </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-26.jpeg" alt="Foto 26">
+                </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-27.jpeg" alt="Foto 27">
+                </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-28.jpeg" alt="Foto 28">
+                </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-29.jpeg" alt="Foto 29">
+                </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-30.jpeg" alt="Foto 30">
+                </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-31.jpeg" alt="Foto 31">
+                </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-32.jpeg" alt="Foto 32">
+                </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-33.jpeg" alt="Foto 33">
+                </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-34.jpeg" alt="Foto 34">
+                </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-35.jpeg" alt="Foto 35">
+                </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-36.jpeg" alt="Foto 36">
+                </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-37.jpeg" alt="Foto 37">
+                </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-38.jpeg" alt="Foto 38">
+                </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-39.jpeg" alt="Foto 39">
+                </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-40.jpeg" alt="Foto 40">
+                </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-41.jpeg" alt="Foto 41">
+                </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-42.jpeg" alt="Foto 42">
+                </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-43.jpeg" alt="Foto 43">
+                </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-44.jpg" alt="Foto 44">
+                </div>
+                <div class="photo-item">
+                    <img src="imgs/foto-45.jpeg" alt="Foto 45"> 
+                </div>
+                
             </div>
         </div>
     </section>
